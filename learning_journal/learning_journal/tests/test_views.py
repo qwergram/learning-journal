@@ -33,7 +33,14 @@ def test_login_route(app):
     assert response.status_code == 200
 
 
-def test_create_route(dbtransaction, app):
+def test_login_view(app):
+    """Test if login view contains form."""
+    response = app.get('/login')
+    import pdb; pdb.set_trace()
+    assert response.status_code == 200
+
+
+def test_create_route(app):
     """Test if permissions block anonymous users."""
     response = app.get('/create', status=403)
     assert response.status_code == 403
