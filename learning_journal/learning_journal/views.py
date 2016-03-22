@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 import datetime
 from .forms import EntryCreateForm, EntryUpdateForm, LoginForm
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound, HTTPTemporaryRedirect
 from pyramid.security import remember, forget
 from .models import (
     DBSession,
@@ -45,6 +45,7 @@ def logout_view(request):
     cookie information
     """
     headers = forget(request)
+    return HTTPTemporaryRedirect(location="/login")
     return HTTPFound(location="/", headers=headers)
 
 
