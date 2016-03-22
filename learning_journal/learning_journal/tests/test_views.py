@@ -10,17 +10,20 @@ def test_list_route(dbtransaction, app):
 
 
 def test_list_view(dbtransaction, dummy_request):
-    """Test list view function."""
+    """Test list view function.
+
+    Add 11 random entries to the database and make sure they all appear.
+    """
     from learning_journal.views import list_view
-    new_model = Entry(title="Norton", text="waffles")
-    second_model = Entry(title="Norton2", text="pancakes")
-    DBSession.add(new_model)
-    DBSession.add(second_model)
-    DBSession.flush()
-    response_dict = list_view(dummy_request)
-    assert response_dict['content'].get(new_model.id).title == new_model.title
-    assert response_dict['content'].get(second_model.id
-                                        ).title == second_model.title
+    import random
+    string = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split()
+    for times in range(12):
+        random.shuffle(string)
+        new_model = Entry(title=" ".join(string), text="_".join(string))
+        DBSession.add(new_model)
+        DBSession.flush()
+        response_dict = list_view(dummy_request)
+        assert response_dict['content'].get(new_model.id).title == new_model.title
 
 
 def test_create_route(dbtransaction, app):
