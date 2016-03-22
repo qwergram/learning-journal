@@ -36,8 +36,12 @@ def test_login_route(app):
 def test_login_view(app):
     """Test if login view contains form."""
     response = app.get('/login')
-    import pdb; pdb.set_trace()
-    assert response.status_code == 200
+    expected = """<form action="" method="post">
+<span>thatonelegend login: <input autofocus="" name="username"/></span><br/>
+<span>password: <input name="password" type="password"/></span><br/>
+<input type="submit">
+</input></form>"""
+    assert expected == str(response.html.find("form"))
 
 
 def test_create_route(app):
