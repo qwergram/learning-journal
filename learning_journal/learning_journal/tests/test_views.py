@@ -13,10 +13,12 @@ def test_list_view(dbtransaction, dummy_request):
     """Test list view function."""
     from learning_journal.views import list_view
     new_model = Entry(title="Norton", text="waffles")
+    second_model = Entry(title="Norton2", text="pancakes")
     DBSession.add(new_model)
+    DBSession.add(second_model)
     DBSession.flush()
     response_dict = list_view(dummy_request)
-    assert response_dict['content'].one().title == new_model.title
+    assert response_dict['content'].get(new_model.id).title == new_model.title
 
 
 def test_create_route(dbtransaction, app):
