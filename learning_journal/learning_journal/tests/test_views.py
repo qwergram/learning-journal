@@ -26,6 +26,12 @@ def test_edit_route(dbtransaction, app):
     assert response.status_code == 403
 
 
+def test_login_route(dbtransaction, app):
+    """Test if model initialized with correct vals."""
+    response = app.get('/login')
+    assert response.status_code == 200
+
+
 def test_list_view(dbtransaction, dummy_request):
     """Test list view function."""
     from learning_journal.views import list_view
