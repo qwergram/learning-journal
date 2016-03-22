@@ -9,6 +9,16 @@ def test_list_route(dbtransaction, app):
     assert response.status_code == 200
 
 
+def test_list_view(dbtransaction, dummy_request):
+    """Test list view function."""
+    from learning_journal.views import list_view
+    new_model = Entry(title="Norton", text="waffles")
+    DBSession.add(new_model)
+    DBSession.flush()
+    response_dict = list_view(dummy_request)
+    assert response_dict['content'].one().title == new_model.title
+
+
 def test_create_route(dbtransaction, app):
     """Test if permissions block anonymous users."""
     response = app.get('/create', status=403)
@@ -34,16 +44,6 @@ def test_logout_route(dbtransaction, app):
     """Test if model initialized with correct vals."""
     response = app.get('/logout')
     assert response.location.split('/')[-1] == 'login'
-
-
-def test_list_view(dbtransaction, dummy_request):
-    """Test list view function."""
-    from learning_journal.views import list_view
-    new_model = Entry(title="Norton", text="waffles")
-    DBSession.add(new_model)
-    DBSession.flush()
-    response_dict = list_view(dummy_request)
-    assert response_dict['content'].one().title == new_model.title
 
 
 def test_detail_view(dbtransaction, dummy_request):
