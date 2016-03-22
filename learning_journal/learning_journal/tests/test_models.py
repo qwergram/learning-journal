@@ -13,3 +13,14 @@ def test_create_mymodel_entry(dbtransaction, dummy_request):
     assert new_model.text == 'waffles'
     assert new_model.title == 'Norton'
     assert new_model.created is not None
+
+
+def test_edit_my_model_entry(dbtransaction, dummy_request):
+    """Test editing of model."""
+    new_model = Entry(title="Norton", text="waffles")
+    DBSession.add(new_model)
+    DBSession.flush()
+    edit = "python3 is better than python2.7"
+    new_model.text = edit
+    DBSession.flush()
+    assert new_model.text == edit
