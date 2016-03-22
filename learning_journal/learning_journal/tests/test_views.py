@@ -3,8 +3,6 @@
 from learning_journal.models import Entry, DBSession
 
 
-# Assert that the views are returning the proper codes
-
 def test_list_route(dbtransaction, app):
     """Test if model initialized with correct vals."""
     response = app.get('/')
@@ -35,7 +33,7 @@ def test_login_route(dbtransaction, app):
 def test_logout_route(dbtransaction, app):
     """Test if model initialized with correct vals."""
     response = app.get('/logout')
-    assert response.status_code == 307
+    assert response.location.split('/')[-1] == 'login'
 
 
 def test_list_view(dbtransaction, dummy_request):
