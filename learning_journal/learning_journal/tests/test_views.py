@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from learning_journal.models import Entry, DBSession
-from webtest import app as webtestapp
-import pytest
 
 
 # Assert that the views are returning the proper codes
