@@ -5,6 +5,8 @@ from webtest import app as webtestapp
 import pytest
 
 
+# Assert that the views are returning the proper codes
+
 def test_list_route(dbtransaction, app):
     """Test if model initialized with correct vals."""
     response = app.get('/')
@@ -13,8 +15,8 @@ def test_list_route(dbtransaction, app):
 
 def test_create_route(dbtransaction, app):
     """Test if permissions block anonymous users."""
-    with pytest.raises(webtestapp.AppError):
-        app.get('/create')
+    response = app.get('/create', status=403)
+    assert response.status_code == 403
 
 
 def test_edit_route(dbtransaction, app):
@@ -22,8 +24,8 @@ def test_edit_route(dbtransaction, app):
     new_model = Entry(title="Norton", text="waffles")
     DBSession.add(new_model)
     DBSession.flush()
-    with pytest.raises(webtestapp.AppError):
-        app.get('/edit/{}'.format(new_model.id))
+    response = app.get('/edit/{}'.format(new_model.id), status=403)
+    assert response.status_code == 403
 
 
 def test_list_view(dbtransaction, dummy_request):
