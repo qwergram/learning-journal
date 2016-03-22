@@ -44,6 +44,12 @@ def test_login_view(app):
     assert expected == str(response.html.find("form"))
 
 
+def test_login_correctly(app, dummy_request):
+    """Test if login POST works correctly."""
+    response = app.post("/login", {"username": "norton", "password": "password"})
+    assert response.status_code == 302
+
+
 def test_create_route(app):
     """Test if permissions block anonymous users."""
     response = app.get('/create', status=403)
