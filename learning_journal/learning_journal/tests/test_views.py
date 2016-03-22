@@ -27,6 +27,12 @@ def test_list_view(dbtransaction, dummy_request):
                                             ).title == new_model.title
 
 
+def test_login_route(app):
+    """Test if model initialized with correct vals."""
+    response = app.get('/login')
+    assert response.status_code == 200
+
+
 def test_create_route(dbtransaction, app):
     """Test if permissions block anonymous users."""
     response = app.get('/create', status=403)
@@ -40,12 +46,6 @@ def test_edit_route(dbtransaction, app):
     DBSession.flush()
     response = app.get('/edit/{}'.format(new_model.id), status=403)
     assert response.status_code == 403
-
-
-def test_login_route(dbtransaction, app):
-    """Test if model initialized with correct vals."""
-    response = app.get('/login')
-    assert response.status_code == 200
 
 
 def test_logout_route(dbtransaction, app):
