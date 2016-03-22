@@ -19,6 +19,8 @@ def test_list_view(dbtransaction, dummy_request):
     DBSession.flush()
     response_dict = list_view(dummy_request)
     assert response_dict['content'].get(new_model.id).title == new_model.title
+    assert response_dict['content'].get(second_model.id
+                                        ).title == second_model.title
 
 
 def test_create_route(dbtransaction, app):
