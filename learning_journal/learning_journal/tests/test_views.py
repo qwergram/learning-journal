@@ -110,3 +110,8 @@ def test_detail_view(dbtransaction, dummy_request):
 
 def test_authenticated_create_route(app):
     """Test if permissions allow admin."""
+    data = {'username': 'norton', 'password': 'password'}
+    response = app.post('/login', data)
+    assert response.status_code == 302
+    create = app.get('/create')
+    assert create.status_code == 200
