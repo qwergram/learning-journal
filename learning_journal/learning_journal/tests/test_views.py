@@ -46,7 +46,10 @@ def test_login_view(app):
 
 def test_login_correctly(app, dummy_request):
     """Test if login POST works correctly."""
-    response = app.post("/login", {"username": "norton", "password": "password"})
+    response = app.post("/login", {
+                                    "username": "norton",
+                                    "password": "password"
+                                  })
     assert response.status_code == 302
 
 
