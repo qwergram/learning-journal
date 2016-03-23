@@ -83,6 +83,20 @@ def test_logout_route(dbtransaction, app):
     assert response.location.split('/')[-1] == 'login'
 
 
+def test_post_login_auth_tkt_present(app):
+    """Test to ensure that the auth ticket is there."""
+    data = {'username': 'norton', 'password': 'password'}
+    response = app.post('/login', data)
+    headers = response.headers
+    cookies_set = headers.getall('Set-Cookie')
+    assert cookies_set
+    for cookie in cookies_set:
+        if cookie.startswith('auth_tkt'):
+            break
+    else:
+        assert False
+
+
 def test_detail_view(dbtransaction, dummy_request):
     """Test detail view function."""
     from learning_journal.views import detail_view
@@ -92,3 +106,7 @@ def test_detail_view(dbtransaction, dummy_request):
     dummy_request.matchdict = {'entry_id': new_model.id}
     response_dict = detail_view(dummy_request)
     assert response_dict['entry'].markdown_text == '<p>waffles</p>'
+
+
+def test_authenticated_create_route(app):
+    """Test if permissions allow admin."""
