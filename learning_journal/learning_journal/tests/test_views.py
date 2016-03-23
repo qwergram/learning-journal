@@ -115,3 +115,15 @@ def test_authenticated_create_route(app):
     assert response.status_code == 302
     create = app.get('/create')
     assert create.status_code == 200
+
+
+def test_authenticated_edit_route(app):
+    """Test if permissions allow admin."""
+    data = {'username': 'norton', 'password': 'password'}
+    app.post('/login', data)
+    app.get('/create')
+    new_model = Entry(title="Norton", text="waffles")
+    DBSession.add(new_model)
+    DBSession.flush()
+    edit = app.get('/edit/1')
+    assert edit.status_code == 200
