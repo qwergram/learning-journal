@@ -62,6 +62,15 @@ def test_login_incorrectly(app, dummy_request):
     assert response.status_code == 401
 
 
+def test_login_incorrectly_view(app, dummy_request):
+    """Test if login POST return html works correctly."""
+    response = app.post("/login",
+                        {"username": "norton", "password": "woops!"},
+                        status=401
+                        )
+    assert "Your login was incorrect, please try again!" in response.text
+
+
 def test_create_route(app):
     """Test if permissions block anonymous users."""
     response = app.get('/create', status=403)
