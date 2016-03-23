@@ -68,7 +68,9 @@ def test_login_incorrectly_view(app, dummy_request):
                         {"username": "norton", "password": "woops!"},
                         status=401
                         )
-    assert "<span class=\"red\">Your login was incorrect, please try again!</span>" in response.text
+    assert ("<span class=\"red\">"
+            "Your login was incorrect, please try again!"
+            "</span>") in response.text
 
 
 def test_create_route(app):
