@@ -1,7 +1,11 @@
 from pyramid.view import view_config
 import datetime
 from .forms import EntryCreateForm, EntryUpdateForm, LoginForm
-from pyramid.httpexceptions import HTTPFound, HTTPTemporaryRedirect, HTTPUnauthorized
+from pyramid.httpexceptions import (
+    HTTPFound,
+    HTTPTemporaryRedirect,
+    HTTPUnauthorized
+)
 from pyramid.security import remember, forget
 from .models import (
     DBSession,
