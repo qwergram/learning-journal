@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, TextAreaField, validators
+from wtforms import Form, StringField, TextAreaField, validators, HiddenField
 from wtforms import HiddenField
 
 
@@ -12,6 +12,7 @@ class EntryCreateForm(Form):
                         filters=[strip_filter])
     text = TextAreaField('text', [validators.Length(min=1)],
                          filters=[strip_filter])
+    csrf_token = HiddenField('csrf_token')
 
 
 class EntryUpdateForm(EntryCreateForm):
