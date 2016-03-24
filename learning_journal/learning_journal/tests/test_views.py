@@ -136,15 +136,3 @@ def test_authenticated_edit_route(app):
     DBSession.flush()
     edit = app.get('/edit/1')
     assert edit.status_code == 200
-
-
-def test_there_is_csrf_in_edit(app):
-    """Test if permissions allow admin."""
-    data = {'username': 'norton', 'password': 'password'}
-    app.post('/login', data)
-    new_model = Entry(title="Norton", text="waffles")
-    DBSession.add(new_model)
-    DBSession.flush()
-    edit = app.get('/edit/1')
-    assert '<input type="hidden" name="csrf_token" value="' in edit.text
-    assert '<input type="hidden" name="csrf_token" value="{{' not in edit.text
