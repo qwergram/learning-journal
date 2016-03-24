@@ -96,6 +96,7 @@
             <form action="" method="post">{% if entry %}{{entry.id}}{% endif %}.<input type="hidden" name="id" value="{% if entry %}{{entry.id}}{% endif %}">
               <input type="text" name="title" value="{% if entry %}{{entry.title}}{% endif %}">
               <textarea name="text">{% if entry %}{{entry.text}}{% endif %}</textarea>
+              <input type="hidden" name="csrf_token" value="">
               <input type="submit" value="Publish">
               <a href="/"><input type="button" value="Home"></a>
               <br/>
