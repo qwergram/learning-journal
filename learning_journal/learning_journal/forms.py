@@ -12,7 +12,6 @@ class EntryCreateForm(Form):
                         filters=[strip_filter])
     text = TextAreaField('text', [validators.Length(min=1)],
                          filters=[strip_filter])
-    csrf_token = HiddenField('csrf_token')
 
 
 class EntryUpdateForm(EntryCreateForm):
