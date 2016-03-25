@@ -32,6 +32,8 @@ share/
 secrets.sh
 norton_dev.ini
 michael_dev.ini
+production.ini
+*.sqlite
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
