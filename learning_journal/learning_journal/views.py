@@ -50,7 +50,7 @@ def logout_view(request):
     cookie information
     """
     headers = forget(request)
-    return HTTPTemporaryRedirect(location="/login", headers=headers)
+    return HTTPTemporaryRedirect(location="/", headers=headers)
     return HTTPFound(location="/", headers=headers)
 
 

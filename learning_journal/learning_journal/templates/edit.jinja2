@@ -106,6 +106,7 @@
               <input type="hidden" name="csrf_token" value="">
               <input type="submit" value="Publish">
               <a href="/"><input type="button" value="Home"></a>
+              {% if entry %}<a href="/view/{{entry.id}}"><input type="button" value="Back"></a>{% endif %}
               <br/>
             </form>
           </div>

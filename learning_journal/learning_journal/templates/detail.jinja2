@@ -99,6 +99,7 @@
             {{entry.markdown_text|safe}}
             <a href="{{request.route_url('edit', entry_id = entry.id)}}"><input type="submit" value="Edit"></a>
             <a href="/"><input type="button" value="Home"></a>
+            <a href="{{entry.tweet_link}}"><input type="button" value="Tweet"></a>
           <br/>
         </div>
       </div>
