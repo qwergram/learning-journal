@@ -95,3 +95,9 @@ def add_view(request):
         session.flush()
         return HTTPFound(location="/")
     return {"time": datetime.datetime.utcnow()}
+
+
+@view_config(route_name="ajax", renderer="json", permission="edit")
+def ajax_ops(request):
+    operation = request.matchdict.get('operation')
+    return {"hello": operation}
