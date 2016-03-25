@@ -1,7 +1,8 @@
+
 <!doctype html>
 <html>
   <head>
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
     <style>
       * {
         font-family: monospace;
@@ -13,9 +14,9 @@
         color: #ddd;
       }
       .terminal {
-        margin-top: 10vh;
+        margin-top: 20vh;
         background: #1d1d1d;
-        height: 70vh;
+        height: 340px;
         border: 5px #333 solid;
         /*padding-left: 5px;*/
         /*padding-right: 5px;*/
@@ -55,14 +56,13 @@
       .gray {
         color: #333;
       }
-      input {
+      input, input[type=password] {
         background: #1d1d1d;
         border: none;
         width: 15em;
         color: #fff;
-        border-bottom: #fff solid 1px;
       }
-      input:focus {
+      input:focus, input[type=password]:focus {
         outline-width: 0;
       }
       input[type=submit], input[type=button] {
@@ -85,6 +85,7 @@
         border: #fff solid 1px;
         overflow-y: hidden;
       }
+
     </style>
     <title>Start Page</title>
   </head>
@@ -92,15 +93,14 @@
     <div class="container">
       <div class="one column">&nbsp;</div>
       <div class="ten columns terminal">
-        <span class="green">nortonpengra</span>@<span class="purple">thatonelegend</span><span class="red">:~$</span> nano journal/entry.txt <span class="orange">||</span> ./easy_view.sh
+        <span class="green">Ubuntu 15.10 thatonelegend tty1</span>
         <br>
-        <div class="row">
-            <b>{{entry.created}}</b> ==> &lt;title&gt;<span>{{entry.title}}</span>&lt;/title&gt;<span>{{entry.title}}</span>
-            {{entry.markdown_text|safe}}
-            <a href="{{request.route_url('edit', entry_id = entry.id)}}"><input type="submit" value="Edit"></a>
-            <a href="/"><input type="button" value="Home"></a>
-          <br/>
-        </div>
+        <span><marquee class="{{color}}">{{message}}</marquee></span>
+        <form action="" method="post">
+          <span>thatonelegend login: <input name="username" autofocus></span><br/>
+          <span>password: <input name="password" type="password"></span><br/>
+          <input type="submit">
+        </form>
       </div>
     </div>
   </body>
