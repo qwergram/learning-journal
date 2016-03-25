@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
     <style>
       * {
         font-family: monospace;
@@ -13,9 +13,9 @@
         color: #ddd;
       }
       .terminal {
-        margin-top: 10vh;
+        margin-top: 20vh;
         background: #1d1d1d;
-        height: 70vh;
+        height: 340px;
         border: 5px #333 solid;
         /*padding-left: 5px;*/
         /*padding-right: 5px;*/
@@ -74,7 +74,7 @@
 
       }
       input[type=text] {
-        width: 35em;
+        width: 45%;
       }
       textarea {
         background: #1d1d1d;
@@ -92,10 +92,10 @@
     <div class="container">
       <div class="one column">&nbsp;</div>
       <div class="ten columns terminal">
-        <span class="green">nortonpengra</span>@<span class="purple">thatonelegend</span><span class="red">:~$</span> nano journal/entry.txt <span class="orange">||</span> ./easy_view.sh
+        <span class="green">nortonpengra</span>@<span class="purple">thatonelegend</span><span class="red">:~$</span> cat journal/entry.txt <span class="orange">||</span> ./easy_view.sh
         <br>
         <div class="row">
-            <b>{{entry.created}}</b> ==> &lt;title&gt;<span>{{entry.title}}</span>&lt;/title&gt;<span>{{entry.title}}</span>
+            <b>{{entry.created}}</b> ==> &lt;title&gt;<strong class="red">{{entry.title}}</strong>&lt;/title&gt;
             {{entry.markdown_text|safe}}
             <a href="{{request.route_url('edit', entry_id = entry.id)}}"><input type="submit" value="Edit"></a>
             <a href="/"><input type="button" value="Home"></a>

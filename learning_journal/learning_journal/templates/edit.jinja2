@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
     <style>
       * {
         font-family: monospace;
@@ -75,6 +75,10 @@
       }
       input[type=text] {
         width: 35em;
+        background: #222;
+        height: 15px;
+        border: 0;
+
       }
       textarea {
         background: #1d1d1d;
@@ -84,6 +88,9 @@
         color: #fff;
         border: #fff solid 1px;
         overflow-y: hidden;
+      }
+      input[type=text]:focus {
+        outline-width: 0;
       }
     </style>
     <title>Start Page</title>
