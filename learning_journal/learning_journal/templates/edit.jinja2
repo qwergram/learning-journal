@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
     <style>
       * {
         font-family: monospace;
@@ -75,6 +75,10 @@
       }
       input[type=text] {
         width: 35em;
+        background: #222;
+        height: 15px;
+        border: 0;
+
       }
       textarea {
         background: #1d1d1d;
@@ -84,6 +88,9 @@
         color: #fff;
         border: #fff solid 1px;
         overflow-y: hidden;
+      }
+      input[type=text]:focus {
+        outline-width: 0;
       }
     </style>
     <title>Start Page</title>
@@ -96,8 +103,10 @@
             <form action="" method="post">{% if entry %}{{entry.id}}{% endif %}.<input type="hidden" name="id" value="{% if entry %}{{entry.id}}{% endif %}">
               <input type="text" name="title" value="{% if entry %}{{entry.title}}{% endif %}">
               <textarea name="text">{% if entry %}{{entry.text}}{% endif %}</textarea>
+              <input type="hidden" name="csrf_token" value="">
               <input type="submit" value="Publish">
               <a href="/"><input type="button" value="Home"></a>
+              {% if entry %}<a href="/view/{{entry.id}}"><input type="button" value="Back"></a>{% endif %}
               <br/>
             </form>
           </div>
